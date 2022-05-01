@@ -42,6 +42,7 @@ var loadDatadois = (response) => {
         });
         response.end(readFile("compra.html").replace("@$listcompra@", creatlistcompra(list))
         .replace("{$linhas}", createListElements(list))
+        .replace("@$listindex@", creatlista(list))
         .replace("@$listsaldo@" , verificaSaldo(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
     });
@@ -207,7 +208,8 @@ var creatlistcompra  = (list) => {
      // var valor = document.getElementById("valorcompra").values;
    
     //(valor) =  (valor) + parceint(valordecompra);
-    listCompra += layot2.replace("{$Data}", element.data)
+    let data = new Date();
+    listCompra += layot2.replace("{$Data}",  "Dia" + data.getDate() + " Mes"+ data.getMonth() + " Ano" + data.getFullYear())
     .replace("{$Valor}" ,  element.valordecompra)
     .replace("{$quantidade}" , element.quant)
     .replace("{$Codigo da Acao}" , element.codcompra)
@@ -224,21 +226,32 @@ var creatlistcompra  = (list) => {
 }
 //parseInt("valorcomp" , 10);
 
-var verificaSaldo   = (calc , valorcomp) => {
+var verificaSaldo   = (list , valorcomp) => {
     let saldo = "";
     let valor = 0;
+    let calc = 0;
+    let valocomp2 = "";
 
     let layot4 = `<tr>
-    <td>{$acaos compradas}</td>
+    <td>{$Valor Total de Acaos Comprada}</td>
   </tr>`;
   //saldo += tabela.replace("{$acaos compradas}" , valorcomp);
-  
+  list.forEach(element =>{
+       valocomp2 = (element.valordecompra)
+    //   parseInt(valorcomp2); // quando faço o parseint no elemento.valordacompra ou a variavel que pega essa valor a valorcamp2 dá pau 
+       // quando vou converter para int dá pau
+       //valor = valor + parseInt(valorcomp2);
+       valor = valor + valocomp2;
+      saldo += layot4.replace("{$Valor Total de Acaos Comprada}" , " Total " + valocomp2 )
+    
+      //.replace("{$Funcionario?}" , element.sim?"sim": "nao")
+  })
+  //parseInt(element.valordecompra);
  
-     parseInt(valorcomp);
      parseInt(valor);
      parseInt(calc);
      
-    saldo += layot4.replace("{$acaos compradas}" , typeof valor === "undefined");
+    ;
   return saldo;
 }
 var creatlistacaosadiquiridas   = (list , valoCompra) => {

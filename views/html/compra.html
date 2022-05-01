@@ -8,30 +8,19 @@
 </table>
 <table border="1" >
   <tr>
-    <td>acaos compradas</td>
+    <td>Valor Total de Acaos Comprada</td>
   </tr>
   @$listsaldo@
 </table>
 
 
 <center>
-<table border="1" >
-  <tr>
-    <td>Data</td>
-    <td>Valor</td>
-    <td>quantidade</td>
-    <td>Codigo da Acao</td>
-    <td>valor total das acaos</td>
-    <td>acaos compradas</td>
-    <td>acaos Cadastradas</td>
-  </tr>
-  @$listcompra@
-  </table>
+
+  
+
 <form action="/salvacompra" method="POST">
-  <label for="fname">Data</label><br>
-  <input type="text" id="data" name="data" value=""><br>
   <label for="fname">Valor</label><br>
-  <input type="text" id="valordecompra" name="valordecompra" value=""><br>
+  <input type="text" id="valordecompra" name="valordecompra" value=" "><br>
   <label for="lname">Quantidade</label><br>
   <input type="text" id="quant" name="quant" value=""><br><br>
   <label for="lname">Codigo da Compra</label><br>
@@ -46,5 +35,26 @@
 <br><br>
   <input type="submit" value="Comprar">
   </form> 
-</center>
 
+  <table border="1" >
+    <tr>
+      <td>Data</td>
+      <td>Valor</td>
+      <td>quantidade</td>
+      <td>Codigo da Acao</td>
+      <td>valor total das acaos</td>
+      <td>acaos compradas</td>
+      <td>acaos Cadastradas</td>
+    </tr>
+    @$listcompra@
+    </table>
+</center>
+<button>
+  <a href="/vender"><meta charset="utf-8">Venda de ações</a>
+</button>
+<button>
+  <a href="/dividendos">Dividendos</a>
+</button>
+<button>
+  <a href="/">Cadastro de Acaos</a>
+</button>
