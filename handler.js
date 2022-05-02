@@ -7,7 +7,8 @@ var url = require('url');
 var path = require('path');
 const { allowedNodeEnvironmentFlags } = require("process");
 const { Console } = require("console");
-
+// Professor a cada cadastro que for feito tem q dar f5 
+//recaregar tentei arrumar mas só pioro e enviei atrasado por causa disso e outros bugs
 
 var loadData = (response) => {
     let list = [];
@@ -134,8 +135,7 @@ list.forEach(element => {
                                 .replace("{$Setor de atuação}" , element.atuacao)
                                 .replace("{$Valor da Acao}" , element.valor)
                                 .replace("{$Quantidade de ações}" , element.quant)
-                                .replace("{$Funcionario?}" , element.sim?"sim": "nao")
-                                .replace("{$Fracionária?}" , element.compra?" ": "nao")
+                                .replace("{$Fracionária?}" , element.sim?"Sim": "Não")
                                 .replace("{$Tipo da ação}" , element.preferencial?"preferencial" : "Ordinária")
 });
 //if("{$Codigo de Indentificação}" === "" && "{$Codigo de Indentificação}" === "{$undefined}")
@@ -313,8 +313,7 @@ module.exports = (request, response) => {
                     console.log(data);
                     global.connection.collection("elementos").insertOne(data);
                     console.log("data");
-                    response.end(readFile("index.html").replace("@$list@", list.length)
-                    .replace("@$listindex@" , creatlista(list)));  
+                  
                 })
                 break;
 
@@ -331,10 +330,6 @@ module.exports = (request, response) => {
                         console.log("data");
                         
                     })
-                 
-                      
-                response.end(readFile("compra.html").replace("@$list@", list.length)
-                .replace("@$listindex@" , creatlista(list)));  
                     break;
 
                 case '/salvavenda':
@@ -345,7 +340,7 @@ module.exports = (request, response) => {
                             global.connection.collection("venda").insertOne(data);
                             console.log("data");
                         })
-    
+                        break;
                         case '/salvadividendos':
                
                             response.writeHead(200, {'Content-Type': 'text/html'});
@@ -354,8 +349,7 @@ module.exports = (request, response) => {
                                 global.connection.collection("dividendos").insertOne(data);
                                 console.log("data");
                             })
-                            response.end(readFile("index.html").replace("@$list@", list.length)
-                            .replace("@$listindex@" , creatlista(list))); 
+                           
                         break;
                 //response.end(readFile("compra.html").replace("@$list@", list.length)
                 //.replace("@$listindex@" , creatlista(list)));  
