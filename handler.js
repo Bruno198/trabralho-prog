@@ -8,7 +8,6 @@ var path = require('path');
 const { allowedNodeEnvironmentFlags } = require("process");
 const { Console } = require("console");
 
-//professor
 
 var loadData = (response) => {
     let list = [];
@@ -153,9 +152,9 @@ var creatlistcompra  = (list) => {
     <td>{$Data}</td>
     <td>{$Valor}</td>
     <td>{$quantidade}</td>
-    <td>{$Codigo da Acao}</td> 
+    <td>{$Codigo da Compra}</td>
     <td>{$valor total das acaos}</td/>
-    <td>{$acaos Cadastradas}</td>
+    <td>{$Açãos Cadastradas}</td>
     <td>{$Vendidos}</td>
   </tr>`;
 
@@ -174,12 +173,10 @@ var creatlistcompra  = (list) => {
     listCompra += layot2.replace("{$Data}",  "Dia" + data.getDate() + " Mes"+ data.getMonth() + " Ano" + data.getFullYear())
     .replace("{$Valor}" ,  element.valordecompra)
     .replace("{$quantidade}" , element.quant)
-    .replace("{$Codigo da Acao}" , element.codcompra)
+    .replace("{$Açãos Cadastradas}" , element.cod)
+    .replace("{$Codigo da Compra}" , element.codcompra)
     .replace("{$valor total das acaos}" ,parseInt(valor) === parseInt(valor) + parseInt(element.valordecompra))
     .replace("{$Vendidos}", element.codacao ? element.codacao : " Sem Vendas Informado")
-    
-    
-
     
 
     let valorcomp = "";
@@ -191,10 +188,10 @@ var creatlistcompra  = (list) => {
     // se for chei o campo ele deleta o campo informado
   });
 
+
   return listCompra;
 }
 //parseInt("valorcomp" , 10);
-
 var verificaSaldo   = (list , valorcomp) => {
     let saldo = "";
     let valor = 0;
@@ -251,17 +248,6 @@ list.forEach(element =>{
 });
 return listVenda;
 }
-function acao(list){
-   let saldo = "";
-   let lista = `<tr>
-   <td>Saldo</td>
- </tr>`;
-   list.forEach(element =>{
-       saldo = saldo + lista.replace("{$Saldo}" , element.valordecompra)
-   });
-   return saldo;
-  }
-
   var creatlistdividendos  = (list) => {
     let listDividendos = '';
 
@@ -327,6 +313,8 @@ module.exports = (request, response) => {
                     console.log(data);
                     global.connection.collection("elementos").insertOne(data);
                     console.log("data");
+                    response.end(readFile("index.html").replace("@$list@", list.length)
+                    .replace("@$listindex@" , creatlista(list)));  
                 })
                 break;
 
@@ -341,10 +329,15 @@ module.exports = (request, response) => {
                         //global.connection.collection("saldo").insertOne(data);
                         //console(valocomp2);
                         console.log("data");
+                        
                     })
+                 
+                      
+                response.end(readFile("compra.html").replace("@$list@", list.length)
+                .replace("@$listindex@" , creatlista(list)));  
                     break;
 
-                    case '/salvavenda':
+                case '/salvavenda':
                
                         response.writeHead(200, {'Content-Type': 'text/html'});
                         collectData(request, (data) => {
@@ -352,7 +345,7 @@ module.exports = (request, response) => {
                             global.connection.collection("venda").insertOne(data);
                             console.log("data");
                         })
-                        break;
+    
                         case '/salvadividendos':
                
                             response.writeHead(200, {'Content-Type': 'text/html'});
@@ -361,10 +354,9 @@ module.exports = (request, response) => {
                                 global.connection.collection("dividendos").insertOne(data);
                                 console.log("data");
                             })
-                            break;              
-                response.end(readFile("index.html").replace("@$list@", list.length)
-                .replace("@$listindex@" , creatlista(list)));  
-     
+                            response.end(readFile("index.html").replace("@$list@", list.length)
+                            .replace("@$listindex@" , creatlista(list))); 
+                        break;
                 //response.end(readFile("compra.html").replace("@$list@", list.length)
                 //.replace("@$listindex@" , creatlista(list)));  
             

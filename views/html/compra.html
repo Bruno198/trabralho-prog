@@ -26,11 +26,11 @@
      <!--<input type="text" id="codacao" name="codacao" value=""><br>--> 
      <label for="fname">Codigo da  venda da Acao</label><br>
       <input type="text" id="codacao" name="codacao" value=""><br>
-     <!--<label for="data">Acaos Cadastradas</label>
+     <label for="data">Acaos Cadastradas</label>
 <select name="cod" id="cod">
   <option value="volvo">Volvo</option>
 
-</select>-->
+</select>
 <br><br>
   <input type="submit" onclick="registro()" value="Comprar e Vender">
 
@@ -38,13 +38,13 @@
   </form> 
   <br><br>
 
-
+<p><meta charset="utf-8">Açãos Compradas</p>
   <table   id="myTable" border="1" >
     <tr>
       <td><meta charset="utf-8">Data</td>
       <td><meta charset="utf-8">Valor</td>
       <td><meta charset="utf-8">quantidade</td>
-      <td><meta charset="utf-8">Codigo da Ação</td>
+      <td><meta charset="utf-8">Codigo da Compra</td>
       <td><meta charset="utf-8">valor total das Açãosos</td>
       <td><meta charset="utf-8">Açãos Cadastradas</td>
       <td><meta charset="utf-8">Vendidas</td>
@@ -63,7 +63,7 @@
 </button>
 <script>
   function registro(){
-    alert("Acao Comprada com Sucesso Renicie a pagina");
+    alert("Acao Comprada com Sucesso");
     alert(" Valor de Acao" + document.getElementById("valordecompra").value);
     alert(" Quantida "+document.getElementById("quant").value);
     alert(" Codigo da Compra "+ document.getElementById("codcompra").value )
