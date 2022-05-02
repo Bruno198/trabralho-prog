@@ -125,8 +125,9 @@ var creatlista = (list) =>{
       <td>{$Setor de atuação}</td>
       <td>{$Valor da Acao}</td>
       <td>{$Quantidade de ações}</td>
-      <td>{$Fracionária?}</td>
       <td>{$Tipo da ação}</td>
+      <td>{$Fracionária?}</td>
+      
   </tr>`;
 
 list.forEach(element => {
@@ -135,8 +136,8 @@ list.forEach(element => {
                                 .replace("{$Setor de atuação}" , element.atuacao)
                                 .replace("{$Valor da Acao}" , element.valor)
                                 .replace("{$Quantidade de ações}" , element.quant)
-                                .replace("{$Fracionária?}" , element.sim?"Sim": "Não")
                                 .replace("{$Tipo da ação}" , element.preferencial?"preferencial" : "Ordinária")
+                                .replace("{$Fracionária?}" , element.sim?"Sim": "Não")
 });
 //if("{$Codigo de Indentificação}" === "" && "{$Codigo de Indentificação}" === "{$undefined}")
 //layot = deleteRow;
