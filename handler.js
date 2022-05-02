@@ -103,25 +103,6 @@ var loadDatadividendos = (response) => {
     });
 }
 
-
-var createListElements = (list) => {
-    let listaGerada = ' ';
-
-    let layout = `<tr>
-    <td>{$Codigo de Indentificação}</td>
-      <td>{$Nome}</td>
-      <td>{$Valor do Investimento}</td>
-      <td>{$Funcionario?}</td>
-  </tr>`;
-
-    list.forEach(element => {
-            listaGerada+= layout.replace("{$nome}", element.fname).replace("{$sobrenome}", element.lname);    
-        });
-
-   
-    return listaGerada;
-}
-
 var list = [] , list2 = [];
 
 
@@ -141,43 +122,27 @@ var collectData = (rq, cal) => {
         cal(parse(data));
     });
 }
-
-var collectDatalist2 = (rq, cal , list2 = []) => {
-    var data2 = '';
-    rq.on('data2', (chunk) => {
-        data2 += chunk;
-    });
-    rq.on ('end', () => {
-        let new_element = parse(data2);
-        cal(parse(data2));
-    });
-    for(let i = 0; i< list2.length; i++)
-    list2[i] = datanova;
-}
-
 var creatlista = (list) =>{
     let listaGerada = '';
 
     let layot =  `<tr>
     <td>{$Codigo de Indentificação}</td>
-      <td>{$Nome}</td>
-      <td>{$Valor do Investimento}</td>
-      <td>{$Atuacao}</td>
-      <td>{$Funcionario?}</td>
-      <td>{$Tipo}</td>
+      <td>{$Setor de atuação}</td>
+      <td>{$Valor da Acao}</td>
+      <td>{$Quantidade de ações}</td>
+      <td>{$Fracionária?}</td>
+      <td>{$Tipo da ação}</td>
   </tr>`;
 
 list.forEach(element => {
    
     listaGerada += layot.replace("{$Codigo de Indentificação}", element.cod)
-                                .replace("{$Nome}" , element.fname)
-                                .replace("{$Valor do Investimento}" , element.valor)
-                                .replace("{$Atuacao}" , element.atuacao)
+                                .replace("{$Setor de atuação}" , element.atuacao)
+                                .replace("{$Valor da Acao}" , element.valor)
+                                .replace("{$Quantidade de ações}" , element.quant)
                                 .replace("{$Funcionario?}" , element.sim?"sim": "nao")
-                                .replace("{$Funcionario?}" , element.compra?" ": "nao")
-                                .replace("{$Tipo}" , element.preferencial?"preferencial" : "Ordinária")
-                                if("{$Codigo de Indentificação}" === "{$undefined}")
-                                layot = deleteRow(layot);
+                                .replace("{$Fracionária?}" , element.compra?" ": "nao")
+                                .replace("{$Tipo da ação}" , element.preferencial?"preferencial" : "Ordinária")
 });
 //if("{$Codigo de Indentificação}" === "" && "{$Codigo de Indentificação}" === "{$undefined}")
 //layot = deleteRow;
@@ -186,6 +151,7 @@ return listaGerada;
 }
 var creatlistcompra  = (list) => {
     let listCompra = '';
+    let listCompra2 = '';
     let codacao = "";
     let valor = 0;
     let saldo = "";
@@ -196,30 +162,38 @@ var creatlistcompra  = (list) => {
     <td>{$Codigo da Acao}</td> 
     <td>{$valor total das acaos}</td/>
     <td>{$acaos Cadastradas}</td>
+    <td>{$Vendidos}</td>
   </tr>`;
 
+ 
   let calc = 0 ;
  
   // parseInt(valor , 10);
-  let valorcomp = "";
+ 
   //let valor  = "0";
   list.forEach(element => {
       let acaosCompradas  = 0;
      // var valor = document.getElementById("valorcompra").values;
-   
+     
     //(valor) =  (valor) + parceint(valordecompra);
     let data = new Date();
     listCompra += layot2.replace("{$Data}",  "Dia" + data.getDate() + " Mes"+ data.getMonth() + " Ano" + data.getFullYear())
     .replace("{$Valor}" ,  element.valordecompra)
     .replace("{$quantidade}" , element.quant)
     .replace("{$Codigo da Acao}" , element.codcompra)
-    .replace("{$valor total das acaos}" ,element.valordecompra)
-    .replace("{$acaos Cadastradas}" ,element.cod)
-     calc = valor = valor + parseInt(element.valordecompra);
+    .replace("{$valor total das acaos}" ,parseInt(valor) === parseInt(valor) + parseInt(element.valordecompra))
+    .replace("{$acaos Cadastradas}" ,element.cod ? "eu sou o layaut 2" : "Sou o layat 5")
+    .replace("{$Vendidos}", element.codacao ? element.codacao : " Sem Vendas Informado")
+
+    
+
+    let valorcomp = "";
+    let linha = "";
+     calc = valor = valor + parseInt(element.valordecompra)
     valorcomp = element.valordecompra
     codacao = element.codcompra;
-    valor = element.valordecompra;
- 
+    dataCompra = element.data;
+    // se for chei o campo ele deleta o campo informado
   });
 
   return listCompra;
@@ -236,42 +210,32 @@ var verificaSaldo   = (list , valorcomp) => {
     <td>{$Valor Total de Acaos Comprada}</td>
   </tr>`;
   //saldo += tabela.replace("{$acaos compradas}" , valorcomp);
-  list.forEach(element =>{
-       valocomp2 = (element.valordecompra)
-    //   parseInt(valorcomp2); // quando faço o parseint no elemento.valordacompra ou a variavel que pega essa valor a valorcamp2 dá pau 
-       // quando vou converter para int dá pau
-       //valor = valor + parseInt(valorcomp2);
-       valor = valor + valocomp2;
-      saldo += layot4.replace("{$Valor Total de Acaos Comprada}" , " Total " + valocomp2 )
-    
+ // var input = document. querySelector("#valordecompra");
+ list.forEach(element => {
+     valocomp2 = element.valordecompra;
+     //parseInt(valorcomp2);
+      //valocomp2 = parseInt("element.valordecompra") || 0 ;
+      valocomp2 = Number("element.valordecompra")
+      //valocomp2 = Math.ceil("element.valordecompra")
+     // document.getElementById("myTable").deleteRow(0);
+      valocomp2.valueOf();
+      parseInt(valor);
+      calc = (valor) = (valor) + valocomp2;
+ })
+ saldo += layot4.replace("{$Valor Total de Acaos Comprada}" , " Total " + valocomp2 + valor)
       //.replace("{$Funcionario?}" , element.sim?"sim": "nao")
-  })
+  
   //parseInt(element.valordecompra);
- 
-     parseInt(valor);
-     parseInt(calc);
      
-    ;
+    
   return saldo;
-}
-var creatlistacaosadiquiridas   = (list , valoCompra) => {
-    let acaosadiquiridas = "";
-    let layot3 = `  <tr>
-    <td>{$acaos compradas}</td>
-  </tr>`;
-
-  list.forEach(element => {
-    acaosadiquiridas += layot3.replace("{$acaos compradas}" , element.valordecompra)
-    valoCompra = valoCompra + parseInt(element.valordecompra)
-  })
-  return acaosadiquiridas;
 }
 //let valor = " ";
 //list.forEach(element =>{
   //  (valor = element.valordecompra  +  element.valordecompra)
 //}
 
-var creatlistVenda   = (list , codacao) => {
+var creatlistVenda   = (list , codacao , dataCompra) => {
     let listVenda = "";
 
     let leyatVenda = ` <tr>
@@ -331,7 +295,6 @@ module.exports = (request, response) => {
         switch (url_parsed.pathname) {
             case '/':
                 response.writeHead(200, {'Content-Type': 'text/html'});
-                //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
                 loadData(response);
                 break;
             case '/element':
@@ -340,30 +303,20 @@ module.exports = (request, response) => {
                 break;
                 case '/compra':
                     response.writeHead(200, {'Content-Type': 'text/html'});
-                   // response.end(readFile("compra.html").replace("@$listindex@" , creatlista(list))
-                    //.replace("@$listcompra@" , creatlistcompra(list)
-                    //.replace("@$listacaos@" , acao(list))));
                     loadDatadois(response);
                    loadDatasaldo(response);
                     break;
                     case '/vender':
                     response.writeHead(200, {'Content-Type': 'text/html'});
-                   // response.end(readFile("vender.html").replace("@$listcompra@" , creatlistcompra(list))
-                    //.replace("@$listvenda@" , creatlistVenda(list)));
                     loadDatavenda(response);                         
                 break;
                 case '/compra':
                     response.writeHead(200, {'Content-Type': 'text/html'});
-                   // response.end(readFile("compra.html").replace("@$listindex@" , creatlista(list))
-                    //.replace("@$listcompra@" , creatlistcompra(list)
-                    //.replace("@$listacaos@" , acao(list))));
                     loadDatadois(response);
                     loadDatasaldo(response);
                     break;
                     case '/dividendos':
                     response.writeHead(200, {'Content-Type': 'text/html'});
-                   // response.end(readFile("vender.html").replace("@$listcompra@" , creatlistcompra(list))
-                    //.replace("@$listvenda@" , creatlistVenda(list)));
                     loadDatadividendos(response);                         
                 break;
             default:
@@ -389,7 +342,9 @@ module.exports = (request, response) => {
                         console.log(data);
                         //console.log(calc);
                         global.connection.collection("compra").insertOne(data);
+                       // global.connection.collection("elementos").insertOne(element.cod);
                         //global.connection.collection("saldo").insertOne(data);
+                        //console(valocomp2);
                         console.log("data");
                     })
                     break;

@@ -18,7 +18,7 @@
 </table>
 <p> Vender ?</p>
 <center>
-    <table border="1" >
+    <table  id="myTable"border="1" >
       <tr>
         <td>Codigo dá Acao</td>
       
@@ -28,14 +28,22 @@
     
     <form action="/salvavenda" method="POST">
       <label for="fname">Codigo da Acao</label><br>
-      <input type="text" id="codacao" name="codacao" value="Codigo de suas Acaos Adiquiridas"><br>
+      <input type="text" id="codacao" name="codacao" value=""><br>
      
-      <input type="submit" value="Vender Acao">
+      <input type="submit"  onclick="registrodeVenda()"value="Vender Acao">
       </form> 
     </center>
     <button>
-      <a href="/compra"><meta charset="utf-8">Venda de ações</a>
+      <a href="/compra"><meta charset="utf-8">Compra de ações</a>
     </button>
     <button>
       <a href="/dividendos">Dividendos</a>
     </button>
+    <script>
+      function registrodeVenda(){
+        document.getElementById("myTable").deleteRow(1);
+    alert(" Acao selecionada Vendida " + document.getElementById("codacao").value);
+    
+    
+  }
+    </script>

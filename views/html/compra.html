@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h2>Compra De Acaos</h2>
+<h2>Compra De Acaos e Vendas</h2>
 
 <!--fazer algo para verificar o saldo do cara usuario -->
 </table>
@@ -15,9 +15,6 @@
 
 
 <center>
-
-  
-
 <form action="/salvacompra" method="POST">
   <label for="fname">Valor</label><br>
   <input type="text" id="valordecompra" name="valordecompra" value=" "><br>
@@ -27,24 +24,30 @@
   <input type="text" id="codcompra" name="codcompra" value=""><br><br>
   <!--<label for="fname">Codigo da Acao</label><br>-->
      <!--<input type="text" id="codacao" name="codacao" value=""><br>--> 
+     <label for="fname">Codigo da  venda da Acao</label><br>
+      <input type="text" id="codacao" name="codacao" value=""><br>
      <label for="data">Acaos Cadastradas</label>
-<select name="data" id="data">
+<!--<select name="cod" id="cod">
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
-</select>
+</select>-->
 <br><br>
-  <input type="submit" value="Comprar">
-  </form> 
+  <input type="submit" onclick="registro()" value="Comprar e Vender">
 
-  <table border="1" >
+  <input type="submit" onclick="dica()" value="Dica">
+  </form> 
+  <br><br>
+
+
+  <table   id="myTable" border="1" >
     <tr>
       <td>Data</td>
       <td>Valor</td>
       <td>quantidade</td>
       <td>Codigo da Acao</td>
       <td>valor total das acaos</td>
-      <td>acaos compradas</td>
       <td>acaos Cadastradas</td>
+      <td>Vendidas</td>
     </tr>
     @$listcompra@
     </table>
@@ -58,3 +61,19 @@
 <button>
   <a href="/">Cadastro de Acaos</a>
 </button>
+<script>
+  function registro(){
+    alert("Acao Comprada com Sucesso Renicie a pagina");
+    alert(" Valor de Acao" + document.getElementById("valordecompra").value);
+    alert(" Quantida "+document.getElementById("quant").value);
+    alert(" Codigo da Compra "+ document.getElementById("codcompra").value )
+    if(document.getElementById("codacao").value !== "")
+    alert(" Codigo de Indentificaao da Acao Vendida " + document.getElementById("codacao").value);
+    
+  }
+  function dica(){
+    alert("Deixe o campo Codigo da  venda da Acao Vazio se voce nao deseja Vender nenhuma Acao Adiquirida")
+  }
+</script>
+
+
