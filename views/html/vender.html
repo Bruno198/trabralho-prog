@@ -1,17 +1,17 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <body>
 
-<h2>Venda De Acaos</h2>
+<h2><meta charset="utf-8">Venda De Açãos</h2>
 
-<p> Acaos Compradas</p>
+<p> <meta charset="utf-8">Açãos Compradas</p>
 
 <table border="1" >
   <tr>
-    <td>Data</td>
-    <td>Valor</td>
-    <td>quantidade</td>
-    <td>Codigo da Acao</td>
+    <td><meta charset="utf-8">Data</td>
+    <td><meta charset="utf-8">Valor</td>
+    <td><meta charset="utf-8">quantidade</td>
+    <td><meta charset="utf-8">Codigo da Ação</td>
       
   </tr>
   @$listcompra@
@@ -20,7 +20,7 @@
 <center>
     <table  id="myTable"border="1" >
       <tr>
-        <td>Codigo dá Acao</td>
+        <td><meta charset="utf-8">Codigo dá Ação</td>
       
       </tr>
       @$listvenda@
@@ -41,6 +41,7 @@
     </button>
     <script>
       function registrodeVenda(){
+        
         document.getElementById("myTable").deleteRow(1);
     alert(" Acao selecionada Vendida " + document.getElementById("codacao").value);
     

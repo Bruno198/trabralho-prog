@@ -2,19 +2,18 @@
 <html>
 <body>
 
-<h2>Dividendos</h2>
+<h2><meta charset="utf-8">Dividendos</h2>
 
 <center>
     <table border="1" >
         <tr>
           <td>Acao Referida</td>
-            <td>Data dá Compra</td>
-            <td>Data do Pagamento</td>
-            <td>Valor a ser Pago por Cota</td>
+            <td><meta charset="utf-8">Data dá Compra</td>
+            <td><meta charset="utf-8">Data do Pagamento</td>
+            <td><meta charset="utf-8">Valor a ser Pago por Cota</td>
         </tr>
         @$listdividendos@
       </table>
-      @$saldo@
       <form action="/salvadividendos" method="POST">
         <label for="fname">Acao Referida</label><br>
         <input type="text" id="aco_referida" name="aco_referida" value=""><br>
@@ -41,18 +40,6 @@
           <a href="/vender">Venda de Acaos</a>
         </button>
           
-      <div>
-        Tamanho da lista @$list@.
-        <script>
-         // while( list.push(data) < 0)
-          while('@$list@' < 0)
-          {
-            if('@$list@' == 0)
-            '@$list@' ='@$list@' + '1';
-          }
-            
-        </script>
-      </div>
       
       </body>
       </html>

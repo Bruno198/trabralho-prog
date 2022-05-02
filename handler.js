@@ -22,8 +22,7 @@ var loadData = (response) => {
         docs.forEach(element => {
             list.push(element);  
         });
-        response.end(readFile("index.html").replace("@$listindex@", creatlista(list))
-        .replace("{$linhas}", createListElements(list)));
+        response.end(readFile("index.html").replace("@$listindex@", creatlista(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
     });
 }
@@ -41,7 +40,6 @@ var loadDatadois = (response) => {
             list.push(element);  
         });
         response.end(readFile("compra.html").replace("@$listcompra@", creatlistcompra(list))
-        .replace("{$linhas}", createListElements(list))
         .replace("@$listindex@", creatlista(list))
         .replace("@$listsaldo@" , verificaSaldo(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
@@ -60,8 +58,7 @@ var loadDatavenda = (response) => {
         docs.forEach(element => {
             list.push(element);  
         });
-        response.end(readFile("vender.html").replace("@$listvenda@", creatlistVenda(list))
-        .replace("{$linhas}", createListElements(list)));
+        response.end(readFile("vender.html").replace("@$listvenda@", creatlistVenda(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
     });
 }
@@ -78,8 +75,7 @@ var loadDatasaldo = (response) => {
         docs.forEach(element => {
             list.push(element);  
         });
-        response.end(readFile("compra.html").replace("@$listsaldo@", verificaSaldo(list))
-        .replace("{$linhas}", createListElements(list)));
+        response.end(readFile("compra.html").replace("@$listsaldo@", verificaSaldo(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
     });
 }
@@ -97,8 +93,7 @@ var loadDatadividendos = (response) => {
         docs.forEach(element => {
             list.push(element);  
         });
-        response.end(readFile("dividendos.html").replace("@$listdividendos@", creatlistdividendos(list))
-        .replace("{$linhas}", createListElements(list)));
+        response.end(readFile("dividendos.html").replace("@$listdividendos@", creatlistdividendos(list)));
         //response.end(readFile("index.html").replace("@$list@", list.length).replace("@$listindex@" , creatlista(list)))
     });
 }
@@ -151,7 +146,6 @@ return listaGerada;
 }
 var creatlistcompra  = (list) => {
     let listCompra = '';
-    let listCompra2 = '';
     let codacao = "";
     let valor = 0;
     let saldo = "";
@@ -182,8 +176,9 @@ var creatlistcompra  = (list) => {
     .replace("{$quantidade}" , element.quant)
     .replace("{$Codigo da Acao}" , element.codcompra)
     .replace("{$valor total das acaos}" ,parseInt(valor) === parseInt(valor) + parseInt(element.valordecompra))
-    .replace("{$acaos Cadastradas}" ,element.cod ? "eu sou o layaut 2" : "Sou o layat 5")
     .replace("{$Vendidos}", element.codacao ? element.codacao : " Sem Vendas Informado")
+    
+    
 
     
 
@@ -278,9 +273,9 @@ function acao(list){
   </tr>`;
   list.forEach(element => {
     listDividendos += layotdividendos.replace("{$Acao Referida}", element.aco_referida)
-    .replace("{$$Data dá Compra}" , element.data_compra)
+    .replace("{$Data dá Compra}" , element.data_compra)
     .replace("{$Data do Pagamento}" , element.data_pagamento)
-    .replace("{$Valor a ser Pago por Cota}" , element.valor_da_cota); 
+    .replace("{$Valor a ser Pago por Cota}" , element.valor_da_cota)
   });
 
   return listDividendos;
